@@ -1,0 +1,19 @@
+.elements {
+  max-width: 880px;
+  width: 100%;
+}
+@media screen and (max-width: 900px) {
+  .elements {
+    max-width: 581px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .elements {
+    max-width: 500px;
+  }
+}
+@media all and (max-width: 300px) {
+  .elements {
+    max-width: 288px;
+  }
+}

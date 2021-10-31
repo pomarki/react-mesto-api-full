@@ -1,0 +1,9 @@
+.elements__item {
+  max-width: 282px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  font-size: 0;
+  align-self: center;
+  justify-self: center;
+}

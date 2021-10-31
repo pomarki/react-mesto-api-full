@@ -1,0 +1,13 @@
+.element {
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  max-width: 282px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}

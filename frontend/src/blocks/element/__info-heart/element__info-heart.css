@@ -1,0 +1,13 @@
+.element__info-heart {
+    width: 22px;
+    height: 19px;
+    border: 0;
+    background: center / cover no-repeat
+    url(../../../images/element__heart-active.svg);
+    outline-style: none;
+  }
+  .element__info-heart:hover {
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.4s linear;
+  }

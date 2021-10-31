@@ -1,0 +1,13 @@
+.profile__avatar-change-icon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  opacity: 0;
+  background: url(../../../images/icon-pen.svg) #000 no-repeat center;
+  transition: opacity 0.4s linear;
+}
+.profile__avatar-change-icon:hover {
+  opacity: 0.8;
+}

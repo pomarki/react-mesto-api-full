@@ -1,0 +1,10 @@
+.element__img {
+  width: 282px;
+  height: 282px;
+  object-fit: contain;
+}
+.element__img:hover {
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.4s linear;
+}

@@ -1,0 +1,6 @@
+.popup__info-picture {
+    background: center / cover no-repeat url(../../../images/popup__info-picture_type_success.svg);
+    width: 120px;
+    height: 120px;
+    margin: 26px 119px 32px 119px;
+}
