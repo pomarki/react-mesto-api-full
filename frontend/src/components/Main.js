@@ -19,7 +19,7 @@ function Main({
   const history = useHistory();
 
   function signOut() {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem("_id"); // было jwt
     history.push("/sing-in");
   }
 

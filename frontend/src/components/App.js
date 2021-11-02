@@ -78,7 +78,7 @@ function App() {
             link: card.link,
             likes: card.likes,
             cardId: card._id,
-            userId: card.owner._id,
+            userId: card.owner,
           }))
         );
       })
@@ -117,7 +117,7 @@ function App() {
                 link: updatedCard.link,
                 likes: updatedCard.likes,
                 cardId: updatedCard._id,
-                userId: updatedCard.owner._id,
+                userId: updatedCard.owner,
               };
         });
         setCards(newCards);
@@ -131,7 +131,7 @@ function App() {
       .removeCard(cardToDelete)
       .then(
         setCards((state) =>
-          state.filter((item) => item.cardId != cardToDelete)
+          state.filter((item) => item.cardId !== cardToDelete)
         ),
         closeAllPopups()
       )
@@ -152,7 +152,7 @@ function App() {
           link: data.link,
           likes: data.likes,
           cardId: data._id,
-          userId: data.owner._id,
+          userId: data.owner,
         };
         setCards([newCard, ...initialCards]);
         closeAllPopups();
@@ -169,7 +169,7 @@ function App() {
   }, []);
 
   function tokenCheck() {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem("_id"); //! было jwt
     if (jwt) {
       auth
         .getContent(jwt)
@@ -181,7 +181,7 @@ function App() {
             history.push("/");
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(`вот такая ошибка:${err} ${jwt}`));
     }
   }
 

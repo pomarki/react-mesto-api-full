@@ -1,14 +1,14 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = 'http://localhost:3005';
 
 function checkRequestResult(response) {
   if (response.ok) {
     return response.json();
   }
-  return Promise.reject(`!error: ${response.status}`);
+  return Promise.reject(`OMG error: ${response.status}`);
 }
 
 export const register = (password, email) => {
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`${BASE_URL}/sign-up`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -19,7 +19,7 @@ export const register = (password, email) => {
 };
 
 export const authorize = (password, email) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${BASE_URL}/sign-in`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -30,7 +30,7 @@ export const authorize = (password, email) => {
     .then(checkRequestResult)
     .then((data) => {
       if (data.token) {
-        localStorage.setItem("jwt", data.token);
+        localStorage.setItem("_id", data.token);
         return data.token;
       } else {
         return;
