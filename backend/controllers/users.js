@@ -75,7 +75,9 @@ module.exports.updateAvatar = (req, res, next) => {
     },
   )
     .orFail(new NotFoundError('Переданы некорректные данные'))
-    .then(() => res.send({ avatar }))
+    .then((user) => res.send({
+      name: user.name, about: user.about, avatar: user.avatar, email: user.email,
+    }))
     .catch(next);
 };
 
