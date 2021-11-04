@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Header({ userStatus, userEmail, signOut }) {
+function Header({ userStatus, signOut }) {
   let statusButtonName ="";
   let statusUserLink = "sing-in";
 
@@ -12,12 +13,12 @@ function Header({ userStatus, userEmail, signOut }) {
     statusButtonName = "Выйти"
   }
 
-
+  const currentUser = React.useContext(CurrentUserContext);
   return (
     <header className="header page__header">
       <div className="header__logo"></div>
       <div className="header__profile-container">
-        <p className="header__user-email">{userEmail}</p>
+        <p className="header__user-email">{currentUser.email}</p>
         <Link to={statusUserLink} className="header__user-status link" onClick={signOut}>
           {statusButtonName}
         </Link>
