@@ -66,7 +66,7 @@ function App() {
     setStateAdd(false);
     setSelectedCard(undefined);
     setDeletePopupOpen(false);
-  };
+  }
 
   useEffect(() => {
     if (loggedIn) {
@@ -74,25 +74,19 @@ function App() {
     }
   }, [history, loggedIn]);
 
-
-
   useEffect(() => {
     tokenCheck();
   }, []);
 
-
-
-
-
   useEffect(() => {
-    
     if (loggedIn) {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([userDate, cardsDate]) => {
-          console.log(userDate);
+          console.log(cardsDate);
           setCurrentUser(userDate);
+
           setCards(
-            cardsDate.map((card) => ({
+            cardsDate.cards.map((card) => ({
               name: card.name,
               link: card.link,
               likes: card.likes,
@@ -101,8 +95,8 @@ function App() {
             }))
           );
         })
-        .catch((err) => console.log(err));}
-    
+        .catch((err) => console.log(err));
+    }
   }, [loggedIn, history]);
 
   function handleUpdateUser(data) {
@@ -185,7 +179,7 @@ function App() {
   }
 
   function handleLogout() {
-    localStorage.removeItem("_id");
+    localStorage.removeItem('_id');
     setCurrentUser({});
     setLoggedIn(false);
   }
@@ -197,7 +191,6 @@ function App() {
         .getContent(jwt)
         .then((res) => {
           if (res) {
-            
             setCurrentUser(res); //
             setLoggedIn(true);
             //history.push("/"); //*
@@ -266,7 +259,6 @@ function App() {
           <Route>
             {loggedIn ? <Redirect to='/' /> : <Redirect to='/sign-in' />}
           </Route>
-
         </Switch>
 
         <InfoTooltip
