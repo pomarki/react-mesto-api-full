@@ -70,7 +70,7 @@ export class Api {
   }
 
   changeLikeCardStatus(id, isLiked) {
-    return fetch(`${this._address}/cards/likes/${id}`, {
+    return fetch(`${this._address}/cards/${id}/likes`, {
       method: isLiked ? "PUT" : "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem('_id')}`,

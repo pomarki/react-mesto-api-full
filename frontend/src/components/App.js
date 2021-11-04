@@ -80,13 +80,15 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      Promise.all([api.getUserInfo(), api.getInitialCards()])
-        .then(([userDate, cardsDate]) => {
-          console.log(cardsDate);
-          setCurrentUser(userDate);
+      history.push("/");
+      const promises = [api.getUserInfo(), api.getInitialCards()];
+      Promise.all(promises)
+        .then((result) => {
+          console.log(result[1]);
+          setCurrentUser(result[0]);
 
           setCards(
-            cardsDate.cards.map((card) => ({
+            result[1].cards.map((card) => ({
               name: card.name,
               link: card.link,
               likes: card.likes,
@@ -120,18 +122,20 @@ function App() {
   }
 
   function handleCardLike(card) {
+    
     api
       .changeLikeCardStatus(card._id, !card.isLiked)
       .then((updatedCard) => {
+        console.log(updatedCard);
         const newCards = initialCards.map((card) => {
-          return card.cardId !== updatedCard._id
+          return card.cardId !== updatedCard.card._id
             ? card
             : {
-                name: updatedCard.name,
-                link: updatedCard.link,
-                likes: updatedCard.likes,
-                cardId: updatedCard._id,
-                userId: updatedCard.owner,
+                name: updatedCard.card.name,
+                link: updatedCard.card.link,
+                likes: updatedCard.card.likes,
+                cardId: updatedCard.card._id,
+                userId: updatedCard.card.owner,
               };
         });
         setCards(newCards);
@@ -161,12 +165,12 @@ function App() {
     api
       .sendNewCard(card)
       .then((data) => {
-        const newCard = {
-          name: data.name,
-          link: data.link,
-          likes: data.likes,
-          cardId: data._id,
-          userId: data.owner,
+          const newCard = {
+          name: data.card.name,
+          link: data.card.link,
+          likes: data.card.likes,
+          cardId: data.card._id,
+          userId: data.card.owner,
         };
         setCards([newCard, ...initialCards]);
         closeAllPopups();

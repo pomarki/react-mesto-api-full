@@ -21,7 +21,7 @@ module.exports.createCard = (req, res, next) => {
       if (!card) {
         throw new BadRequestError('Переданы некорректные данные для создания карточки');
       }
-      res.send({ data: card });
+      res.send({ card });
     })
     .catch(next);
 };
@@ -33,7 +33,7 @@ module.exports.likeCard = (req, res, next) => {
     { new: true },
   )
     .orFail(new NotFoundError('Переданы некорректные данные для постановки лайка'))
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send({ card }))
     .catch(next);
 };
 
@@ -44,7 +44,7 @@ module.exports.dislikeCard = (req, res, next) => {
     { new: true },
   )
     .orFail(new NotFoundError('Переданы некорректные данные для снятия лайка'))
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send({ card }))
     .catch(next);
 };
 
