@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
@@ -10,6 +11,7 @@ const cardRouter = require('./routes/cards');
 const auth = require('./middlewares/auth');
 const NotFoundError = require('./errors/not-found-err');
 const regex = require('./helpers/URL-validate');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 const options = {
@@ -30,6 +32,8 @@ app.use('*', cors(options));
 app.use(helmet());
 
 app.use(express.json());
+
+app.use(requestLogger);
 
 app.post('/sign-in', celebrate({
   body: Joi.object().keys({
@@ -59,6 +63,8 @@ app.use(auth);
 app.use('/users', userRouter);
 app.use('/cards', cardRouter);
 
+app.use(errorLogger);
+
 app.use(errors());
 
 app.use((req, res, next) => next(new NotFoundError('Маршрута не существует')));
@@ -76,5 +82,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
+  console.log(`App listening on port ${PORT} ${process.env.JWT_SECRET}`);
 });

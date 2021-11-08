@@ -26,7 +26,6 @@ function App() {
   const [cardToDelete, setCardToDelete] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
   const history = useHistory();
-  /* const [userEmail, setUserEmail] = useState(''); */
   const [isRegisterDone, setRegisterDone] = useState(false);
   const [isInfoTooltipopen, setInfoTooltipopen] = useState(false);
 
@@ -84,9 +83,7 @@ function App() {
       const promises = [api.getUserInfo(), api.getInitialCards()];
       Promise.all(promises)
         .then((result) => {
-          console.log(result[1]);
           setCurrentUser(result[0]);
-
           setCards(
             result[1].cards.map((card) => ({
               name: card.name,
@@ -229,7 +226,9 @@ function App() {
           history.push('/');
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        openInfoTooltip(false);
+        console.log(err)});
   }
 
   return (
