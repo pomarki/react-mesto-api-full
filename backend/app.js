@@ -17,6 +17,7 @@ const { PORT = 3000 } = process.env;
 const options = {
   origin: [
     'http://localhost:3000',
+    'https://github.com/pomarki',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
@@ -82,5 +83,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT} ${process.env.JWT_SECRET}`);
+  console.log(`App listening on port ${PORT}`);
 });
