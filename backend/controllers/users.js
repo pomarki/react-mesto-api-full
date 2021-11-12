@@ -28,6 +28,7 @@ module.exports.createUser = (req, res, next) => {
       if (user) {
         throw new ConflictError('Пользователь с таким email существует');
       }
+      console.log(SALT_ROUND);
       bcrypt
         .hash(req.body.password, SALT_ROUND)
         .then((hash) => User.create({
