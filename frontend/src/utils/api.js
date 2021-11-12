@@ -1,4 +1,4 @@
-const adress_URL = "http://localhost:3000";
+const adress_URL = "http://217.28.228.138:3000";
 
 export class Api {
   constructor({ address }) {
