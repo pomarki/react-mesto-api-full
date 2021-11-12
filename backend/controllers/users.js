@@ -30,7 +30,7 @@ module.exports.createUser = (req, res, next) => {
       }
       console.log(SALT_ROUND);
       bcrypt
-        .hash(req.body.password, SALT_ROUND)
+        .hash(req.body.password, Number(SALT_ROUND))
         .then((hash) => User.create({
           name: req.body.name,
           about: req.body.about,
