@@ -1,4 +1,4 @@
-const adress_URL = "http://api.mesto-testo.nomoredomains.rocks";
+const adress_URL = "https://api.mesto-testo.nomoredomains.rocks";
 
 export class Api {
   constructor({ address }) {
