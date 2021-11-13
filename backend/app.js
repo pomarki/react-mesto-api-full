@@ -18,6 +18,8 @@ const options = {
   origin: [
     'http://localhost:3000',
     'https://github.com/pomarki',
+    'http://mesto-testo.nomoredomains.rocks',
+    'https://mesto-testo.nomoredomains.rocks',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
@@ -35,6 +37,12 @@ app.use(helmet());
 app.use(express.json());
 
 app.use(requestLogger);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/sign-in', celebrate({
   body: Joi.object().keys({

@@ -1,4 +1,4 @@
-const adress_URL = "http://217.28.228.138:3000";
+const adress_URL = "http://api.mesto-testo.nomoredomains.rocks";
 
 export class Api {
   constructor({ address }) {
